@@ -6,9 +6,7 @@ import { Form } from '../Form/Form';
 import Filter from 'components/Filter/Filter';
 
 export class App extends Component {
-  // static getDerivedStateFromProps() {}
-
-  state = {
+    state = {
     contacts: [],
     filter: '',
   };
@@ -54,14 +52,14 @@ export class App extends Component {
 
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contacts'));
-
-    this.setState({ contacts });
+    if (contacts) {
+  this.setState({ contacts })
+}
+    ;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-    console.log(this.state);
-    console.log(prevProps === this.state);
+  componentDidUpdate(prevProps) {
+    
     if (prevProps.contacts !== this.state.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
